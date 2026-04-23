@@ -66,6 +66,12 @@ public class TravelController : ControllerBase
             {
                 return StatusCode(503, "ระบบ AI กำลังมีผู้ใช้งานจำนวนมาก กรุณาลองใหม่อีกครั้งในอีกสักครู่ครับ");
             }
+            
+            // ดักจับ Error 429 (Too Many Requests / Quota Exceeded)
+            if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+            {
+                return StatusCode(429, "คุณใช้งาน AI เกินโควต้าที่กำหนดชั่วคราว กรุณารอสักครู่ (ประมาณ 1-2 นาที) แล้วลองใหม่อีกครั้งครับ");
+            }
 
             return StatusCode((int)response.StatusCode, $"Failed to connect to Gemini API: {error}");
         }
