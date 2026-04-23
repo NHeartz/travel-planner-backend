@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
                   "http://localhost:5173", 
-                  "https://travel-api-backend.onrender.com" // ก๊อปปี้ URL ของ Vercel มาวางตรงนี้ (ไม่ต้องมี / ปิดท้าย)
+                  "https://travel-planner-frontend-rust.vercel.app" // ⚠️ สำคัญมาก: ตรงนี้ต้องใส่ URL ของ Vercel (หน้าบ้าน) นะครับ
               ) 
               .AllowAnyHeader()
               .AllowAnyMethod();
